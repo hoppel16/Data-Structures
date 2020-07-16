@@ -66,12 +66,33 @@ class BSTNode:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        current = node
+
+        if current.left is not None:
+            current.left.in_order_print(current.left)
+
+        print(current.value)
+
+        if current.right is not None:
+            current.right.in_order_print(current.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        from collections import deque
+
+        queue = deque()
+        queue.append(self)
+
+        while len(queue) > 0:
+            current = queue.popleft()
+
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+
+            print(current.value)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
